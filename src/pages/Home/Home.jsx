@@ -4,6 +4,7 @@ import Navbar from '../../shared/Navbar/Navbar';
 import LeftSideNav from '../../shared/leftSideNav/LeftSideNav';
 import RightSideNav from '../../shared/rightSideNav/RightSideNav';
 import BreakingNews from './BreakingNews';
+// import Post from './Post';
 
 const Home = () => {
     return (
@@ -25,6 +26,9 @@ const Home = () => {
             <div className='border'>
                 <RightSideNav></RightSideNav>
             </div>
+          </div>
+          <div>
+            {/* <Post></Post> */}
           </div>
         </div>
     );
