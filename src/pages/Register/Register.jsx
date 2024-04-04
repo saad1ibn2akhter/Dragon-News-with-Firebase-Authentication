@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../../shared/Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Register = () => {
+    const {createUser} = useContext(AuthContext);
     const handleRegister = e =>{
         e.preventDefault();
-        const name = e.target.name.value;
-        const photo = e.target.photo.value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        
-        console.log(name,photo,email,password);
+        const form = new FormData(e.currentTarget);
+        const name = form.get('name');
+        const email = form.get('email');
+        const photo = form.get('photo');
+        const password = form.get('password');
+
+        console.log(name, password ,email ,photo);
+
+        createUser(email,password)
+        .then(result =>{
+            console.log('user created' , result.user)
+        })
+        .catch(error => {
+            console.error(error)
+        })
 
     }
     return (
@@ -22,7 +33,7 @@ const Register = () => {
                     <div className="card shrink-0  w-[523px] shadow-2xl bg-base-100 p-6">
                         <form onSubmit={handleRegister} className="card-body">
                             <div className="text-center text-sm ">
-                                <h1 className="text-[36px] font-bold">Login to your account</h1>
+                                <h1 className="text-[36px] font-bold">Register an account</h1>
                             </div> <br /><hr />
                             <div className="form-control">
                                 <label className="label">

@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import Navba
 import Navbar from '../../shared/Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
+    const {logInUser} = useContext(AuthContext);
     const handleLogin = e =>{
         e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const email = form.get('email');
+        const password = form.get('password');
+
+        logInUser(email,password)
+        .then(res => console.log('user logged in succesfuly !'))
+        .catch(error => console.error(error))
         
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        
-        console.log(email,password);
 
     }
     return (
